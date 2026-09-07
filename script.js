@@ -41,17 +41,43 @@ const DEVELOPER_PASSWORD = "llimr2026";
 const SALES_PASSWORD = "nuknowsale26";
 const SALES_USERS = null;
 
-const views = ["staffLoginView","roleView","marketerView","salesLoginView","salesReportView","developerView","developerDashboard"];
+const views = ["staffStartView","staffLoginView","staffSignupView","roleView","marketerView","salesLoginView","salesReportView","developerView","developerDashboard"];
 const showView = id => views.forEach(v => document.getElementById(v)?.classList.toggle("hidden", v !== id));
 const staffError = document.getElementById("staffError");
 const salesError = document.getElementById("salesError");
 const developerError = document.getElementById("developerError");
 
+document.getElementById("staffLoginOption")?.addEventListener("click", () => showView("staffLoginView"));
+document.getElementById("staffSignupOption")?.addEventListener("click", () => showView("staffSignupView"));
+document.getElementById("backToStaffStart")?.addEventListener("click", () => showView("staffStartView"));
+document.getElementById("backToStaffStartFromSignup")?.addEventListener("click", () => showView("staffStartView"));
 document.getElementById("staffLoginBtn")?.addEventListener("click", () => {
   staffError.textContent = document.getElementById("mainStaffPassword").value === STAFF_PASSWORD ? "" : "Incorrect staff password.";
   if (!staffError.textContent) showView("roleView");
 });
-document.getElementById("staffLogoutBtn")?.addEventListener("click", () => showView("staffLoginView"));
+document.getElementById("staffLogoutBtn")?.addEventListener("click", () => showView("staffStartView"));
+
+document.getElementById("staffSignupForm")?.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const form = new FormData(e.currentTarget);
+  const department = form.get("department");
+  const success = document.getElementById("staffSignupSuccess");
+  if (department !== "Sales") {
+    success.textContent = "Only Sales is currently open for staff sign-up.";
+    return;
+  }
+  const message = [
+    "NUVIO — NEW STAFF SIGN UP",
+    "",
+    `Name: ${form.get("name")}`,
+    `Phone: ${form.get("phone")}`,
+    `Address: ${form.get("address")}`,
+    `Department: ${department}`
+  ].join("\n");
+  success.textContent = "Sign-up details prepared. WhatsApp will open so the request can be sent to Nuvio.";
+  window.open("https://wa.me/919037686996?text=" + encodeURIComponent(message), "_blank", "noopener");
+  e.currentTarget.reset();
+});
 document.getElementById("marketerBtn")?.addEventListener("click", () => showView("marketerView"));
 document.getElementById("developerBtn")?.addEventListener("click", () => showView("developerView"));
 document.getElementById("backToRoles")?.addEventListener("click", () => showView("roleView"));

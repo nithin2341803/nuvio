@@ -267,11 +267,31 @@
         <p>Private workspace for Nuvio marketers and developers.</p>
       </div>
       <div class="staff-card" id="staffCard">
-        <div id="staffLoginView">
-          <h3>Staff Login</h3>
+        <div id="staffStartView">
+          <h3>Staff Area</h3>
+          <p class="staff-start-copy">Choose an option to continue.</p>
+          <div class="role-grid">
+            <button class="role-btn active" id="staffLoginOption" type="button"><b>Staff Login</b><span>Existing staff members</span></button>
+            <button class="role-btn" id="staffSignupOption" type="button"><b>Staff Sign Up</b><span>Register as new staff</span></button>
+          </div>
+        </div>
+        <div id="staffLoginView" class="hidden">
+          <div class="portal-head"><div><p class="eyebrow">STAFF</p><h3>Staff Login</h3></div><button class="text-btn" id="backToStaffStart" type="button">← Back</button></div>
           <label>Staff password<input id="mainStaffPassword" type="password" autocomplete="off" placeholder="Enter staff password"></label>
           <button class="staff-btn" id="staffLoginBtn" type="button">Enter Staff Area</button>
           <p class="staff-error" id="staffError"></p>
+        </div>
+        <div id="staffSignupView" class="hidden">
+          <div class="portal-head"><div><p class="eyebrow">STAFF SIGN UP</p><h3>Join Nuvio</h3></div><button class="text-btn" id="backToStaffStartFromSignup" type="button">← Back</button></div>
+          <form id="staffSignupForm">
+            <label>Name<input id="signupName" name="name" type="text" autocomplete="name" placeholder="Your full name" required></label>
+            <label>Phone number<input id="signupPhone" name="phone" type="tel" autocomplete="tel" placeholder="Your phone number" required></label>
+            <label>Address<input id="signupAddress" name="address" type="text" autocomplete="street-address" placeholder="Your address" required></label>
+            <label>Department<select id="signupDepartment" name="department" required><option value="" selected disabled>Select department</option><option value="Sales">Sales</option><option value="Social Media" disabled>Social Media — Coming soon</option><option value="Developer" disabled>Developer — Coming soon</option></select></label>
+            <button class="staff-btn" type="submit">Submit Staff Sign Up</button>
+            <p class="staff-success" id="staffSignupSuccess"></p>
+            <p class="whatsapp-note">Currently, only the Sales department is open for staff sign-up.</p>
+          </form>
         </div>
         <div id="roleView" class="hidden">
           <h3>Choose access</h3>
