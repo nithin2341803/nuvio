@@ -1,1 +1,6 @@
-{"rewrites":[{"source":"/api/generate-website.js","destination":"/api/generate-website"}]}
+{
+  "rewrites": [
+    { "source": "/api/generate-website", "destination": "/api/generate-website.js" },
+    { "source": "/p/:id", "destination": "/preview.html?p=:id" }
+  ]
+}
