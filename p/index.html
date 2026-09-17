@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nuvio — Website</title>
+  <meta name="robots" content="noindex,nofollow">
+</head>
+<body>
+  <script>
+    // Short public project URL: /p/XXXXXX
+    // Vercel serves this file for the /p/ path; the 6-character ID is resolved client-side.
+    const parts = location.pathname.split('/').filter(Boolean);
+    const id = (parts[1] || '').toUpperCase();
+    if (!/^[A-Z0-9]{6}$/.test(id)) {
+      location.replace('/');
+    } else {
+      location.replace('/preview.html?p=' + encodeURIComponent(id));
+    }
+  </script>
+  <p>Opening website…</p>
+</body>
+</html>
