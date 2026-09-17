@@ -1,6 +1,6 @@
 {
   "rewrites": [
     { "source": "/api/generate-website", "destination": "/api/generate-website.js" },
-    { "source": "/p/:id", "destination": "/preview.html?p=:id" }
+    { "source": "/p/:id([A-Za-z0-9]{6})", "destination": "/preview.html?p=:id" }
   ]
 }
